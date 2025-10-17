@@ -16,18 +16,21 @@
 **No installation required! Deploy directly from your browser:**
 
 ### 1. Open Cloud Shell
+
 1. Go to https://console.cloud.google.com/
 2. Sign in with your Google account
-3. Click the **Activate Cloud Shell** icon (>_) in the top-right corner
+3. Click the **Activate Cloud Shell** icon (>\_) in the top-right corner
 4. Wait for the terminal to load (~10 seconds)
 
 ### 2. Clone Your Repository
+
 ```bash
 git clone https://github.com/barveakshat/visual-product-matcher.git
 cd visual-product-matcher/clip-service
 ```
 
 ### 3. Set Up Project (First Time Only)
+
 ```bash
 # Create a new project
 gcloud projects create visual-product-matcher-$(date +%s) --name="Visual Product Matcher"
@@ -40,6 +43,7 @@ gcloud services enable cloudbuild.googleapis.com run.googleapis.com artifactregi
 ```
 
 **Or use existing project:**
+
 ```bash
 # List your projects
 gcloud projects list
@@ -49,6 +53,7 @@ gcloud config set project YOUR_PROJECT_ID
 ```
 
 ### 4. Deploy to Cloud Run (One Command)
+
 ```bash
 gcloud run deploy clip-service \
   --source . \
@@ -63,15 +68,18 @@ gcloud run deploy clip-service \
 ```
 
 **When prompted:**
+
 - "Please specify a region": Press Enter (uses us-central1)
 - "Allow unauthenticated invocations": Type `y` and press Enter
 
 ### 5. Wait for Deployment
+
 - Build time: 8-12 minutes (first time)
 - You'll see progress: Uploading → Building → Deploying
 - Final output will show your service URL
 
 ### 6. Test Your Service
+
 ```bash
 # Get your service URL
 SERVICE_URL=$(gcloud run services describe clip-service --region us-central1 --format 'value(status.url)')
@@ -85,6 +93,7 @@ curl $SERVICE_URL/health
 ```
 
 ### 7. Save Your URL
+
 Copy the service URL from the output. You'll need it for backend configuration.
 
 **Example URL:** `https://clip-service-abc123xyz-uc.a.run.app`

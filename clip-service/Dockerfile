@@ -17,7 +17,7 @@ COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
 # Pre-download CLIP model during build to avoid runtime download
-RUN python -c "import clip; clip.load('ViT-B/32', device='cpu')"
+RUN python -c "import open_clip; open_clip.create_model_and_transforms('ViT-B-32', pretrained='openai')"
 
 # Copy application code
 COPY . .

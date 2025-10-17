@@ -4,7 +4,7 @@ services:
     env: python
     region: oregon
     plan: free
-    buildCommand: |
+    buildCommand:
       pip install --upgrade pip &&
       pip install -r requirements.txt &&
       pip install git+https://github.com/openai/CLIP.git &&

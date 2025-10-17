@@ -1,5 +1,5 @@
 import torch
-import clip
+import open_clip
 from PIL import Image
 import io
 import logging
@@ -17,7 +17,8 @@ logger.info("Loading CLIP model...")
 device = "cuda" if torch.cuda.is_available() else "cpu"
 
 try:
-    model, preprocess = clip.load("ViT-B/32", device=device)
+    model, _, preprocess = open_clip.create_model_and_transforms('ViT-B-32', pretrained='openai')
+    model = model.to(device)
     model.eval()
     logger.info(f"✅ CLIP model loaded successfully on {device}")
     logger.info(f"   Model: ViT-B/32")
