@@ -53,37 +53,33 @@ const ImageUpload = () => {
     dispatch(resetUpload());
 
     let formData;
+    let matchImageUrl; // The URL/data to use for matching
+    
     if (inputMode === 'file') {
       formData = new FormData();
       formData.append('image', fileInputRef.current.files[0]);
       formData.append('name', productName.trim() || 'Uploaded Product');
+      
+      // For file uploads, use the preview (base64) for matching since files don't persist on Render
+      matchImageUrl = previewUrl;
     } else {
       formData = { 
         imageUrl: imageUrl.trim(),
         name: productName.trim() || 'Product from URL'
       };
+      
+      // For URL uploads, use the original URL
+      matchImageUrl = imageUrl.trim();
     }
 
     try {
       const result = await dispatch(uploadImage(formData)).unwrap();
       Logger.debug('Upload result:', result);
       
-      let imageUrl = result.data?.image_url || result.image_url;
-      
-      if (!imageUrl) {
-        Logger.error('No image_url in response:', result);
-        alert('Upload successful but image URL is missing');
-        return;
-      }
-      
-      // Convert relative URL to absolute URL using backend base URL
-      if (imageUrl.startsWith('/')) {
-        const API_BASE_URL = process.env.REACT_APP_API_URL || 'http://localhost:5000';
-        imageUrl = `${API_BASE_URL}${imageUrl}`;
-      }
-      
-      Logger.debug('Matching products with:', imageUrl);
-      await dispatch(matchProducts(imageUrl)).unwrap();
+      // Use the matchImageUrl we prepared earlier instead of the response URL
+      // This avoids 404 errors with ephemeral filesystem on Render
+      Logger.debug('Matching products with:', inputMode === 'file' ? 'base64 data' : matchImageUrl);
+      await dispatch(matchProducts(matchImageUrl)).unwrap();
     } catch (error) {
       Logger.error('Upload failed:', error);
       
