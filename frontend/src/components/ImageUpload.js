@@ -76,8 +76,10 @@ const ImageUpload = () => {
         return;
       }
       
+      // Convert relative URL to absolute URL using backend base URL
       if (imageUrl.startsWith('/')) {
-        imageUrl = `http://localhost:5000${imageUrl}`;
+        const API_BASE_URL = process.env.REACT_APP_API_URL || 'http://localhost:5000';
+        imageUrl = `${API_BASE_URL}${imageUrl}`;
       }
       
       Logger.debug('Matching products with:', imageUrl);
