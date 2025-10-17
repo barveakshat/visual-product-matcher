@@ -125,7 +125,8 @@ REACT_APP_API_URL=<BACKEND_URL_FROM_RENDER>/api
 1. **MongoDB Atlas Connection String**
 
    - You already have this from Part 1
-   - Format: `mongodb+srv://username:password@cluster.mongodb.net/product-matcher?retryWrites=true&w=majority`
+   - Format: `mongodb+srv://<USERNAME>:<PASSWORD>@<CLUSTER>.mongodb.net/product-matcher?retryWrites=true&w=majority`
+   - Replace `<USERNAME>`, `<PASSWORD>`, and `<CLUSTER>` with your actual values
 
 2. **Free Tier Limitations**
 

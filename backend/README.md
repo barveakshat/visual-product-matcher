@@ -387,7 +387,7 @@ Set the following in production:
 ```env
 NODE_ENV=production
 PORT=5000
-MONGODB_URI=mongodb+srv://user:pass@cluster.mongodb.net/dbname
+MONGODB_URI=mongodb+srv://<USERNAME>:<PASSWORD>@<CLUSTER>.mongodb.net/<DATABASE>
 HUGGINGFACE_API_KEY=your_production_key
 FRONTEND_URL=https://your-frontend-domain.com
 ```
