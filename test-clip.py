@@ -38,12 +38,16 @@ def test_encoding():
         
         print(f"✅ Status: {response.status_code}")
         
-        result = response.json()
-        print(f"📊 Embedding shape: {result.get('shape', 'N/A')}")
-        print(f"📊 Model: {result.get('model', 'N/A')}")
-        print(f"📊 First 5 values: {result.get('embedding', [])[:5]}")
+        embedding = response.json()
+        print(f"📊 Embedding shape: ({len(embedding)},)")
+        print(f"📊 First 5 values: {embedding[:5]}")
         
-        return True
+        if response.status_code == 200 and len(embedding) == 512:
+            print(f"✅ Image encoding successful!")
+            return True
+        else:
+            print(f"❌ Unexpected response format")
+            return False
     except Exception as e:
         print(f"❌ Encoding test failed: {e}")
         return False
