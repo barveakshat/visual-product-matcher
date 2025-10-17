@@ -1,10 +1,6 @@
 # 📸 Visual Product Matcher# 📸 Visual Product Matcher# Visual Product Matcher
 
-
-
 A production-ready visual search system that finds similar products using AI-powered image embeddings. Upload an image and instantly discover visually similar products with high accuracy using OpenAI's CLIP model.A production-ready visual search system that finds similar products using AI-powered image embeddings. Upload an image and instantly discover visually similar products with high accuracy.A modern web application that uses AI-powered image similarity to find visually similar products from a catalog. Built with React (frontend), Node.js (backend), MongoDB (database), and Hugging Face API for image embeddings.
-
-
 
 [![Node.js](https://img.shields.io/badge/Node.js-16+-green)](https://nodejs.org/)<img src="https://img.shields.io/badge/Node.js-16+-green" /> <img src="https://img.shields.io/badge/React-18+-blue" /> <img src="https://img.shields.io/badge/Python-3.8+-yellow" /> <img src="https://img.shields.io/badge/MongoDB-4.4+-success" /> <img src="https://img.shields.io/badge/CLIP-OpenAI-orange" />## Features
 
@@ -16,15 +12,9 @@ A production-ready visual search system that finds similar products using AI-pow
 
 [![CLIP](https://img.shields.io/badge/CLIP-OpenAI-orange)](https://github.com/openai/CLIP)- AI-powered visual similarity matching using Hugging Face
 
-
-
 ---- 🎯 **High-Accuracy Matching**: 512-dimensional CLIP embeddings for precise visual similarity- Responsive design for mobile and desktop
 
-
-
 ## 🌐 Live Deployment- ⚡ **Fast Search**: Sub-second search across thousands of products- Filter and sort results by category and similarity score
-
-
 
 - **🎨 Frontend:** https://visual-product-matcher-app.vercel.app- 🖼️ **Multi-Format Support**: JPEG, PNG, WebP image uploads- Clean, modern UI with loading states and error handling
 
@@ -58,19 +48,13 @@ A production-ready visual search system that finds similar products using AI-pow
 
 - 🔍 **Category Filtering**: Browse products by Electronics, Fashion, Home, Accessories, Sports, Kitchen
 
-- 📈 **Similarity Scores**: Visual percentage scores for each match (70-90% for close matches)┌─────────────────┐      ┌─────────────────┐      ┌─────────────────┐- **Image Processing**: Multer for uploads
+- 📈 **Similarity Scores**: Visual percentage scores for each match (70-90% for close matches)┌─────────────────┐ ┌─────────────────┐ ┌─────────────────┐- **Image Processing**: Multer for uploads
 
+---│ │ │ │ │ │
 
+## 🏗️ Architecture│ React Frontend │─────▶│ Express API │─────▶│ CLIP Service │## Prerequisites
 
----│                 │      │                 │      │                 │
-
-
-
-## 🏗️ Architecture│  React Frontend │─────▶│  Express API    │─────▶│  CLIP Service   │## Prerequisites
-
-
-
-```│  (Port 3001)    │      │  (Port 5000)    │      │  (Port 3000)    │
+```│ (Port 3001)    │      │  (Port 5000)    │      │  (Port 3000)    │
 
 ┌─────────────────┐      ┌─────────────────┐      ┌─────────────────┐
 
@@ -110,7 +94,7 @@ A production-ready visual search system that finds similar products using AI-pow
 
 **Frontend (React)**
 
-- React 18 with Redux Toolkit for state management                         └─────────────────┘
+- React 18 with Redux Toolkit for state management └─────────────────┘
 
 - Tailwind CSS for styling
 
@@ -132,8 +116,6 @@ git clone <repository-url>
 
 - Deployed on Render### Prerequisites
 
-
-
 **CLIP Service (Python/FastAPI)**### 2. Backend Setup
 
 - FastAPI for high-performance API
@@ -143,8 +125,6 @@ git clone <repository-url>
 - 512-dimensional embeddings
 
 - Deployed on Google Cloud Run with 2GB RAM- Python 3.8+Navigate to the backend directory:
-
-
 
 **Database (MongoDB Atlas)**- MongoDB 4.4+
 
@@ -166,23 +146,19 @@ cd backend
 
 1. **Image Upload**: User uploads a product image through React frontend
 
-2. **Embedding Generation**: Backend sends image to CLIP service`bash`bash
+1. **Embedding Generation**: Backend sends image to CLIP service`bash`bash
 
-3. **CLIP Processing**: CLIP model (ViT-B/32) generates 512-dimensional embedding
+1. **CLIP Processing**: CLIP model (ViT-B/32) generates 512-dimensional embedding
 
-4. **Similarity Search**: Backend computes cosine similarity against all products in MongoDB# Clone repositorynpm install
+1. **Similarity Search**: Backend computes cosine similarity against all products in MongoDB# Clone repositorynpm install
 
-5. **Ranking**: Products ranked by similarity score (0-100%)
+1. **Ranking**: Products ranked by similarity score (0-100%)
 
-6. **Display**: Top matches displayed with images, names, prices, and scoresgit clone <your-repo-url>```
-
-
+1. **Display**: Top matches displayed with images, names, prices, and scoresgit clone <your-repo-url>```
 
 ### Similarity Calculationcd Visual-product-matcher
 
-
-
-```javascript#### Configure Environment Variables
+`````javascript#### Configure Environment Variables
 
 // Cosine similarity formula
 
@@ -300,7 +276,7 @@ cd ../clip-service
 
 pip install -r requirements.txtmongod- Start MongoDB service
 
-```
+`````
 
 - Use the default connection string: `mongodb://localhost:27017/product-matcher`
 
@@ -326,7 +302,7 @@ cp .env.example .env1. Go to [MongoDB Atlas](https://www.mongodb.com/atlas)
 
 Edit `frontend/.env`:
 
-```envcd backend3. Get the connection string from "Connect" → "Connect your application"
+````envcd backend3. Get the connection string from "Connect" → "Connect your application"
 
 REACT_APP_API_URL=http://localhost:5000/api
 
@@ -344,13 +320,13 @@ cd ../backend
 
 node scripts/seedProducts.jscd frontend#### Seed the Database
 
-```
+````
 
 npm start
 
 ### 6. Start All Services
 
-```You have multiple options to populate the database with products:
+````You have multiple options to populate the database with products:
 
 **Terminal 1 - CLIP Service:**
 
@@ -360,19 +336,17 @@ cd clip-service
 
 python -m uvicorn service:app --host 0.0.0.0 --port 80804. **Seed Database****Option 1: External API Data (Recommended)** 🌟
 
-```
-
-
+````
 
 **Terminal 2 - Backend:**
 
-```bash```bashGet real products from external APIs:
+`bash`bashGet real products from external APIs:
 
 cd backend
 
 npm startcd backend
 
-```
+````
 
 node scripts/seedProducts.js```bash
 
@@ -384,7 +358,7 @@ cd frontend
 
 npm startnpm run seed:api
 
-```
+````
 
 5. **Access Application**
 
@@ -398,7 +372,7 @@ Open http://localhost:3001 in your browsernode scripts/seed-from-dummyjson.js 30
 
 ## ☁️ Production Deployment
 
-````
+````````
 
 ### Deploy CLIP Service to Google Cloud Run
 
@@ -792,7 +766,7 @@ Made with ❤️ using React, Node.js, Python, and OpenAI CLIP
 
 ]
 
-````
+````````
 
 Visual-product-matcher/
 
