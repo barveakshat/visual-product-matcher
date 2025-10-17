@@ -84,7 +84,15 @@ const ImageUpload = () => {
       await dispatch(matchProducts(imageUrl)).unwrap();
     } catch (error) {
       Logger.error('Upload failed:', error);
-      alert(`Upload failed: ${error}`);
+      
+      // Better error message for timeout due to cold start
+      if (error.message && error.message.includes('timeout')) {
+        alert('Request timed out. The server may be waking up (cold start on free tier). Please try again in a few seconds.');
+      } else if (error.code === 'ECONNABORTED') {
+        alert('Connection timeout. Please wait a moment and try again - the server may be starting up.');
+      } else {
+        alert(`Upload failed: ${error.message || error}`);
+      }
     }
   };
 

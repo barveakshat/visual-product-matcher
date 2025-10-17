@@ -7,7 +7,7 @@ Logger.info('API Base URL:', API_BASE_URL);
 
 const apiClient = axios.create({
   baseURL: API_BASE_URL,
-  timeout: 30000, // 30 seconds
+  timeout: 120000, // 120 seconds (2 minutes) - handles cold starts on free tiers
   headers: {
     'Content-Type': 'application/json',
   },
